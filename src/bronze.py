@@ -1,7 +1,7 @@
 """
 bronze.py
 
-Responsibility:
+Function:
   Load raw CSV files from data/raw/, resolve date format inconsistencies
   using PySpark, and write the results as Parquet to data/bronze/.
 
@@ -92,7 +92,7 @@ billing_bronze.write.mode("overwrite").parquet(
     os.path.join(BRONZE_DIR, "bronze_billing_transactions")
 )
 
-print(f"  Rows written: {billing_bronze.count()}")
+print(f"  Rows: {billing_bronze.count()}")
 billing_bronze.printSchema()
 
 # Ingest churn data
@@ -110,16 +110,16 @@ churn_bronze = churn_raw.withColumn(
 )
 
 churn_bronze.write.mode("overwrite").parquet(
-    os.path.join(BRONZE_DIR, "bronze_churn_data")
+    os.path.join(BRONZE_DIR, "bronze_churn")
 )
 
-print(f"  Rows written: {churn_bronze.count()}")
+print(f"  Rows: {churn_bronze.count()}")
 churn_bronze.printSchema()
 
 # register as temp view for validation
 crm_bronze.createOrReplaceTempView("bronze_crm_customers")
 billing_bronze.createOrReplaceTempView("bronze_billing_transactions")
-churn_bronze.createOrReplaceTempView("bronze_churn_data")
+churn_bronze.createOrReplaceTempView("bronze_churn")
 
 print("\nBronze layer validation...")
 spark.sql("""
