@@ -124,7 +124,7 @@ print(
 # Problems 2:
 #   a. Duplicate rows exist in billing (same transaction_id,
 #      same amount, same date — system-level duplicates).
-#   b. Refunds are stored as negative-amount rows with status='refunded'.
+#   b. Refunds are stored as postive-amount rows with status='refunded'.
 #      These must be excluded from revenue calculations.
 #
 # Fix:
@@ -179,7 +179,7 @@ silver_transactions = spark.sql("""
     )
 
     -- Final filter: paid transactions only.
-    -- Excludes refunded rows (negative amounts, status = 'refunded').
+    -- Excludes refunded rows (status = 'refunded').
     SELECT *
     FROM no_duplicates
     WHERE status = 'paid'
