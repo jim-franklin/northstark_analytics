@@ -98,14 +98,13 @@ northstark_analytics/
 │   └── eda.ipynb                     # EDA used to identify data quality issues
 │
 └── dashboard/
-    └── app.py                        # Plotly and Altair dashboard
+    └── app.py                        # Plotly dashboard
 ```
  
 ## Tools Used
  
 - **PySpark** — For data ingestion, date parsing, and SQL transformations
 - **PySpark SQL** — For writing CTEs, window functions, joins, and metric derivation
-- **Plotly Dash** — For creating dashboard components and layout
-- **Altair** — For showing charts in the dashboard and eda
+- **Plotly** — For creating dashboard components, layout and charts
 - **Render.com** — dashboard deployment
  
