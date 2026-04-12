@@ -6,9 +6,7 @@ channels:
 dependencies:
   - python=3.12
   - openjdk=17
-  - pandas=3.0.1
-  - numpy=2.4.3
-  - matplotlib
+  - pandas
   - jupyter
   - notebook
   - ipykernel
@@ -16,6 +14,4 @@ dependencies:
   - pip:
       - pyspark==4.1.1
       - plotly==6.7.0
-      - altair==6.0.0
-      - vl-convert-python
       - pyarrow
