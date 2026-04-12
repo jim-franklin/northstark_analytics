@@ -49,7 +49,7 @@ Exploratory data analysis was performed across all three source files before any
 | Inconsistent date formats (YYYY-MM-DD vs DD/MM/YYYY ) | CRM | Parsed using PySpark coalesce and to_date with multiple format patterns |
 | Pipeline stage values inconsistent (e.g. closed_won, Won, QUALIFIED, null) | CRM | Mapped all variants to a standard set of stage names using CASE WHEN in SQL. Nulls assigned to Lead |
 | Duplicate transaction rows | Billing | Removed using ROW_NUMBER() window function, partitioned by transaction_id |
-| Refunds included as negative amount rows mixed into revenue | Billing | Filtered out using WHERE status = 'paid' before aggregating revenue |
+| Refunds included as postive amount rows mixed into revenue | Billing | Filtered out using WHERE status = 'paid' before aggregating revenue |
 | 10 customers present in billing but missing from CRM | Billing | Flagged as an open item. Included in customer count but noted for client review |
  
 Cleaned versions of all data are written to the `data/silver/` folder.
