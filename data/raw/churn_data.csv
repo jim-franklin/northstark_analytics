@@ -1,0 +1,19 @@
+customer_id,churn_date,churn_reason
+CUST-060,2024-07-25,Budget cuts
+CUST-064,2024-03-05,Price
+CUST-040,2024-10-07,Switched to competitor
+CUST-003,2024-07-14,No longer needed
+CUST-012,2024-09-23,No longer needed
+CUST-051,2024-03-24,Poor support
+CUST-065,2024-03-27,Budget cuts
+CUST-059,2024-12-13,Switched to competitor
+CUST-031,2024-09-02,Budget cuts
+CUST-028,2024-07-26,Price
+CUST-075,2024-09-14,Budget cuts
+CUST-046,2024-10-17,Budget cuts
+CUST-007,2024-07-22,Budget cuts
+CUST-037,2024-04-30,Switched to competitor
+CUST-077,2024-04-19,Poor support
+CUST-084,2024-09-08,No longer needed
+CUST-087,2024-12-11,No longer needed
+CUST-061,2024-05-13,Switched to competitor
