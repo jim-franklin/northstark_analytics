@@ -89,11 +89,10 @@ northstark_analytics/
 │   │   └── churn_data.csv
 │   │
 │   ├── bronze/                       # Raw data ingested into Spark, dates parsed
-│   └── silver/                       # Cleaned, joined, and metrics-ready data
-│
-├── src/
-│   ├── bronze.py                     # Load CSVs, parse dates, write Bronze tables
-│   └── silver.py                     # All SQL transformations — CTEs, joins, dedup, metrics
+│   |── silver/                       # Cleaned, joined, and metrics-ready data
+|   └── src/
+|       ├── bronze.py                     # Load CSVs, parse dates, write Bronze tables
+|       └── silver.py                     # All SQL transformations — CTEs, joins, dedup, metrics
 │
 ├── notebooks/
 │   └── eda.ipynb                     # EDA used to identify data quality issues
