@@ -12,9 +12,7 @@ from pathlib import Path
 from pyspark.sql import SparkSession
 
 # Begin spark session
-spark = SparkSession.builder \
-    .appName("NorthStack_Silver_Transformations") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("NorthStack_Silver_Transformations").getOrCreate()
 
 spark.sparkContext.setLogLevel("ERROR")
 
@@ -25,14 +23,17 @@ BRONZE_DIR = BASE_DIR / "data" / "bronze"
 SILVER_DIR = BASE_DIR / "data" / "silver"
 
 # Load bronze tables
-spark.read.parquet(os.path.join(BRONZE_DIR, "bronze_crm_customers")) \
-    .createOrReplaceTempView("bronze_crm_customers")
+spark.read.parquet(
+    os.path.join(BRONZE_DIR, "bronze_crm_customers")
+).createOrReplaceTempView("bronze_crm_customers")
 
-spark.read.parquet(os.path.join(BRONZE_DIR, "bronze_billing_transactions")) \
-    .createOrReplaceTempView("bronze_billing_transactions")
+spark.read.parquet(
+    os.path.join(BRONZE_DIR, "bronze_billing_transactions")
+).createOrReplaceTempView("bronze_billing_transactions")
 
-spark.read.parquet(os.path.join(BRONZE_DIR, "bronze_churn")) \
-    .createOrReplaceTempView("bronze_churn")
+spark.read.parquet(os.path.join(BRONZE_DIR, "bronze_churn")).createOrReplaceTempView(
+    "bronze_churn"
+)
 
 print("\n\n\n...\n")
 print("Bronze tables loaded.\n")
@@ -118,7 +119,8 @@ silver_customers.write.mode("overwrite").parquet(
 silver_customers.createOrReplaceTempView("silver_crm_customers")
 print(f"  Rows: {silver_customers.count()}")
 print(
-    f"  Billing-only customers (not in CRM): {silver_customers.filter('billing_only_flag = true').count()}")
+    f"  Billing-only customers (not in CRM): {silver_customers.filter('billing_only_flag = true').count()}"
+)
 
 
 # Problems 2:
@@ -189,9 +191,7 @@ silver_transactions.write.mode("overwrite").parquet(
     os.path.join(SILVER_DIR, "silver_billing_transactions")
 )
 silver_transactions.createOrReplaceTempView("silver_billing_transactions")
-print(
-    f"  Rows after dedup and refund exclusion: {silver_transactions.count()}"
-    )
+print(f"  Rows after dedup and refund exclusion: {silver_transactions.count()}")
 
 
 print("\nBuilding silver_churn...")
@@ -201,9 +201,7 @@ silver_churn = spark.sql("""
     FROM bronze_churn
 """)
 
-silver_churn.write.mode("overwrite").parquet(
-    os.path.join(SILVER_DIR, "silver_churn")
-)
+silver_churn.write.mode("overwrite").parquet(os.path.join(SILVER_DIR, "silver_churn"))
 
 print(f"  Rows: {silver_churn.count()}")
 
