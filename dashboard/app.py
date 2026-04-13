@@ -1,12 +1,11 @@
 import sys
 import os
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 import dash
 import dash_bootstrap_components as dbc
 from layout.main_layout import build_layout
 from callbacks.filters import register_callbacks
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 app = dash.Dash(
     __name__,

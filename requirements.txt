@@ -1,0 +1,7 @@
+dash
+dash-bootstrap-components
+plotly==6.7.0
+numpy
+pandas
+gunicorn==23.0.0
+pyarrow

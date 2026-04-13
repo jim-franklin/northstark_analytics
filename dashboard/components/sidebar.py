@@ -15,11 +15,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 SIDEBAR_STYLE = {
-    "position": "fixed",
+    "position": "flexible",
     "top": 0,
     "left": 0,
     "bottom": 0,
-    "width": "260px",
+    "width": "auto",
     "padding": "20px 16px",
     "backgroundColor": INDIGO_700,
     "overflowY": "auto",
@@ -57,17 +57,18 @@ dropdown_style = {
 
 def build_sidebar():
     return html.Div(
+        className="h-100",
         style=SIDEBAR_STYLE,
         children=[
             # Title
             html.H5(
-                "NorthStark Inc.",
+                "NorthStark Analytics Inc.",
                 style={
                     "color": WHITE,
                     "fontFamily": FONT_FAMILY,
-                    "fontWeight": "700",
+                    "fontWeight": "400",
                     "marginBottom": "20px",
-                    "fontSize": "15px",
+                    "fontSize": "20px",
                 },
             ),
             html.Hr(style={"borderColor": INDIGO_600, "marginBottom": "20px"}),

@@ -42,11 +42,12 @@ def build_layout():
                     # Sidebar column — fixed width, full height
                     dbc.Col(
                         build_sidebar(),
-                        width="auto",
-                        style={"padding": "0"},
+                        md=2,
+                        style={"padding": "0", },
                     ),
                     # Main content column — fills remaining space
                     dbc.Col(
+                        md=10,
                         style={
                             "backgroundColor": SLATE_100,
                             "minHeight": "100vh",
@@ -54,19 +55,17 @@ def build_layout():
                         },
                         children=[
                             html.H1(
-                                "Sales & Customer Performance",
+                                "Sales & Customer Performance Dashboard",
                                 style={
-                                    "fontSize": "22px",
+                                    "fontSize": "28px",
                                     "fontWeight": "700",
                                     "color": "#1e1b4b",
-                                    "margin": "0 0 8px 0",
+                                    "margin": "0 8px 20px 0px",
                                     "fontFamily": FONT_FAMILY,
                                 },
                             ),
-                            html.Div(
-                                id="data-mode-label", style={"marginBottom": "20px"}
-                            ),
                             build_kpi_cards(),
+
                             # Charts row 1
                             dbc.Row(
                                 style={"marginBottom": "16px"},
@@ -86,7 +85,7 @@ def build_layout():
                                             ],
                                         ),
                                         md=6,
-                                        style={"paddingRight": "8px"},
+                                        # style={"paddingRight": "8px"},
                                     ),
                                     dbc.Col(
                                         html.Div(
@@ -103,7 +102,7 @@ def build_layout():
                                             ],
                                         ),
                                         md=6,
-                                        style={"paddingLeft": "8px"},
+                                        # style={"paddingLeft": "8px"},
                                     ),
                                 ],
                             ),
@@ -118,14 +117,11 @@ def build_layout():
                                                     id="chart-pipeline-pie",
                                                     config={"displayModeBar": False},
                                                 ),
-                                                html.P(
-                                                    "Pipeline stages. Raw mode shows unnormalized CRM values.",
-                                                    style=NOTE_STYLE,
-                                                ),
+                                                html.Br(),
                                             ],
                                         ),
                                         md=6,
-                                        style={"paddingRight": "8px"},
+                                        # style={"paddingRight": "8px"},
                                     ),
                                     dbc.Col(
                                         html.Div(
@@ -135,14 +131,11 @@ def build_layout():
                                                     id="chart-new-customers",
                                                     config={"displayModeBar": False},
                                                 ),
-                                                html.P(
-                                                    "New customers = first paid transaction date per customer per month.",
-                                                    style=NOTE_STYLE,
-                                                ),
+                                                html.Br()
                                             ],
                                         ),
                                         md=6,
-                                        style={"paddingLeft": "8px"},
+                                        # style={"paddingLeft": "8px"},
                                     ),
                                 ]
                             ),
