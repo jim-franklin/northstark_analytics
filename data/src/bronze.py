@@ -23,15 +23,14 @@ Note:
   billing_transactions uses a different customer_id format (C001).
   This is a known issue documented here. Reconciliation happens in Silver.
 """
+
 import os
 from pathlib import Path
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import coalesce, to_date, col, expr
 
 # begin spark session
-spark = SparkSession.builder \
-    .appName("NorthStack_Bronze_Ingestion") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("NorthStack_Bronze_Ingestion").getOrCreate()
 
 spark.sparkContext.setLogLevel("ERROR")
 
@@ -45,9 +44,7 @@ print("\n\n\n...\n")
 print("Ingesting CRM customers...")
 
 crm_raw = spark.read.csv(
-    os.path.join(RAW_DIR, "crm_customers.csv"),
-    header=True,
-    inferSchema=True
+    os.path.join(RAW_DIR, "crm_customers.csv"), header=True, inferSchema=True
 )
 
 # signup_date in crm data has two formats mixed in the same column:
@@ -60,8 +57,8 @@ crm_bronze = crm_raw.withColumn(
     "signup_date",
     coalesce(
         expr("try_to_date(signup_date, 'yyyy-MM-dd')"),
-        expr("try_to_date(signup_date, 'dd/MM/yyyy')")
-    )
+        expr("try_to_date(signup_date, 'dd/MM/yyyy')"),
+    ),
 )
 
 crm_bronze.write.mode("overwrite").parquet(
@@ -69,7 +66,9 @@ crm_bronze.write.mode("overwrite").parquet(
 )
 
 print(f"  Rows written: {crm_bronze.count()}")
-print(f"  Null signup_dates after parse: {crm_bronze.filter(col('signup_date').isNull()).count()}")
+print(
+    f"  Null signup_dates after parse: {crm_bronze.filter(col('signup_date').isNull()).count()}"
+)
 crm_bronze.printSchema()
 
 # Ingest billing data
@@ -77,14 +76,11 @@ crm_bronze.printSchema()
 print("\nIngesting billing transactions...")
 
 billing_raw = spark.read.csv(
-    os.path.join(RAW_DIR, "billing_transactions.csv"),
-    header=True,
-    inferSchema=True
+    os.path.join(RAW_DIR, "billing_transactions.csv"), header=True, inferSchema=True
 )
 
 billing_bronze = billing_raw.withColumn(
-    "transaction_date",
-    to_date(col("transaction_date"), "yyyy-MM-dd")
+    "transaction_date", to_date(col("transaction_date"), "yyyy-MM-dd")
 )
 
 billing_bronze.write.mode("overwrite").parquet(
@@ -98,19 +94,14 @@ billing_bronze.printSchema()
 print("\nIngesting churn data...")
 
 churn_raw = spark.read.csv(
-    os.path.join(RAW_DIR, "churn_data.csv"),
-    header=True,
-    inferSchema=True
+    os.path.join(RAW_DIR, "churn_data.csv"), header=True, inferSchema=True
 )
 
 churn_bronze = churn_raw.withColumn(
-    "churn_date",
-    to_date(col("churn_date"), "yyyy-MM-dd")
+    "churn_date", to_date(col("churn_date"), "yyyy-MM-dd")
 )
 
-churn_bronze.write.mode("overwrite").parquet(
-    os.path.join(BRONZE_DIR, "bronze_churn")
-)
+churn_bronze.write.mode("overwrite").parquet(os.path.join(BRONZE_DIR, "bronze_churn"))
 
 print(f"  Rows: {churn_bronze.count()}")
 churn_bronze.printSchema()
