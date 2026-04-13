@@ -17,5 +17,7 @@ app = dash.Dash(
 app.layout = build_layout()
 register_callbacks(app)
 
+server = app.server
+
 if __name__ == "__main__":
-    app.run(debug=True, port=8050)
+    app.run(debug=False, port=8050)
