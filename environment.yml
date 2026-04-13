@@ -10,6 +10,7 @@ dependencies:
   - jupyter
   - notebook
   - ipykernel
+  - dash
   - pip
   - pip:
       - pyspark==4.1.1
