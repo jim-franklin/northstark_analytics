@@ -100,6 +100,12 @@ northstark_analytics/
 └── dashboard/
     └── app.py                        # Plotly dashboard
 ```
+
+## Dashboard
+
+The dashboard is deployed and accessible at [render.com](https://northstark-analytics.onrender.com)
+
+![](img/dashboard.png)
  
 ## Tools Used
  
