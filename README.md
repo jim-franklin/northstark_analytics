@@ -60,9 +60,9 @@ These figures are calculated from Silver data only and represent what would go i
  
 | Metric | Definition |
 |---|---|
-| Total Revenue | Sum of paid transactions only. Refunds and duplicates excluded. |
+| Total Revenue | Sum of paid transactions excluding refunds and duplicates |
 | Active Customers | Unique customers with at least one paid transaction who have not churned |
-| Churn Rate | Churned customers divided by total unique customers in billing |
+| Churn Rate | Churned customers divided by total unique customers |
  
 ## Assumptions
  

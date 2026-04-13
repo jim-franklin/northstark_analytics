@@ -59,17 +59,17 @@ def build_kpi_cards():
             _single_card(
                 "kpi-revenue",
                 "Total Revenue",
-                "Sum of paid transactions excluding refunds",
+                "Sum of paid transactions excluding refunds and duplicates",
             ),
             _single_card(
                 "kpi-active",
                 "Active Customers",
-                "Unique paying customers not present in the churn list",
+                "Unique customers with at least one paid transaction who have not churned",
             ),
             _single_card(
                 "kpi-churn",
                 "Churn Rate",
-                "Churned customers over total unique customers",
+                "Churned customers divided by total unique customers",
             ),
         ],
     )
